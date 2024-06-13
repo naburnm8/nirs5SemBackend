@@ -1,8 +1,9 @@
-package ru.naburnm8.bmstu.datamanagementnirbackend.security.util;
+package ru.naburnm8.bmstu.datamanagementnirbackend.security.additionals.authmodels;
 
-public class AuthRequest{
+public class RegisterRequest {
     private String username;
     private String password;
+    private String role;
 
     public String getUsername() {
         return username;
@@ -18,5 +19,13 @@ public class AuthRequest{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

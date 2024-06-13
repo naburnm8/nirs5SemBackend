@@ -1,5 +1,6 @@
 package ru.naburnm8.bmstu.datamanagementnirbackend.security.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -9,8 +10,11 @@ public class Users {
     @Id
     @GeneratedValue
     private int id;
+    @Column(nullable = false, unique = true)
     private String username;
+    @Column(nullable = false)
     private String password;
+    @Column(nullable = false)
     private String role;
 
     public int getId() {
