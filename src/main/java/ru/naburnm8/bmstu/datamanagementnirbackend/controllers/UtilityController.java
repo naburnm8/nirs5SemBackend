@@ -1,5 +1,6 @@
 package ru.naburnm8.bmstu.datamanagementnirbackend.controllers;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,11 +10,12 @@ import ru.naburnm8.bmstu.datamanagementnirbackend.models.Message;
 @RequestMapping("/api/connection")
 public class UtilityController {
     @GetMapping
-    public Message getConnection() {
-        return new Message("borovik");
+    public ResponseEntity<Message> getConnection() {
+
+        return ResponseEntity.ok(new Message("borovik"));
     }
     @GetMapping("/info")
-    public Message getInfo() {
-        return new Message("PostgreSQL API running on Windows 11");
+    public ResponseEntity<Message> getInfo() {
+        return ResponseEntity.ok(new Message("PostgreSQL API Server running on Windows 11"));
     }
 }
