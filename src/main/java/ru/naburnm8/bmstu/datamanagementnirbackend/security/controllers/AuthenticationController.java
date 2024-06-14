@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import ru.naburnm8.bmstu.datamanagementnirbackend.models.Message;
 import ru.naburnm8.bmstu.datamanagementnirbackend.security.additionals.JwtUtils;
 import ru.naburnm8.bmstu.datamanagementnirbackend.security.additionals.authmodels.LoginRequest;
 import ru.naburnm8.bmstu.datamanagementnirbackend.security.additionals.authmodels.LoginResponse;
@@ -54,6 +55,6 @@ public class AuthenticationController {
         user.setRole(registerRequest.getRole());
         userRepository.save(user);
 
-        return ResponseEntity.ok("User " + user.getUsername() + " registered successfully");
+        return ResponseEntity.ok(new Message("User " + user.getUsername() + " registered successfully"));
     }
 }
