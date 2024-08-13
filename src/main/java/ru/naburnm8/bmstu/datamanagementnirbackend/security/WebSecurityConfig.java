@@ -44,11 +44,11 @@ public class WebSecurityConfig {
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
                 .authorizeHttpRequests(authorize -> authorize.requestMatchers("/auth/**").permitAll()
                         .requestMatchers(("/api/connection/**")).permitAll().requestMatchers("/login").permitAll().requestMatchers("/error").permitAll().requestMatchers("css/**").permitAll()
-                        .requestMatchers("/admin/**").access("")
+                        .requestMatchers("/admin/**").access(new WebAuthManager())
                         .anyRequest().authenticated());
 
         http.addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-        http.formLogin(form -> form.loginPage("/login").defaultSuccessUrl("/api/clients", true).permitAll());
+        http.formLogin(form -> form.loginPage("/login").defaultSuccessUrl("/admin/", true).permitAll());
 
         return http.build();
     }
