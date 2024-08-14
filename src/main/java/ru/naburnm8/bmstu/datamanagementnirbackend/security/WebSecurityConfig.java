@@ -48,7 +48,9 @@ public class WebSecurityConfig {
                         .anyRequest().authenticated());
 
         http.addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-        http.formLogin(form -> form.loginPage("/login").defaultSuccessUrl("/admin/", true).permitAll());
+        http.formLogin(form -> form.loginPage("/login").defaultSuccessUrl("/", true).permitAll());
+        http.logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/login"));
+
 
         return http.build();
     }

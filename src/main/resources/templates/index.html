@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Info Page</title>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+<div class="container">
+    <h2>Welcome!</h2>
+    <h3 class="username" th:text="${username}"></h3>
+    <h3 class="role" th:text="${role}"></h3>
+
+    <button th:if="${role} == 'Your role: [ADMINISTRATOR]'" class="admin-button" th:onclick="'location.href=\'/admin\''">Admin Panel</button>
+    <button class="logout" th:onclick="'location.href=\'/logout\''">Logout</button>
+</div>
+</body>
+</html>

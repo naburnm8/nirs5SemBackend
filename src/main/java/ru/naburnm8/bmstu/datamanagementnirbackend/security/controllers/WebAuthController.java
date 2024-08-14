@@ -13,4 +13,8 @@ public class WebAuthController {
     public String getLoginPage(Model model) {
         return "login";
     }
+    @GetMapping("/logout")
+    public String getLogoutPage(Model model) {
+        return "redirect:login";
+    }
 }
