@@ -1,16 +1,25 @@
 package ru.naburnm8.bmstu.datamanagementnirbackend.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ru.naburnm8.bmstu.datamanagementnirbackend.models.Catalogue;
+import ru.naburnm8.bmstu.datamanagementnirbackend.services.CatalogueService;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminPanelController {
+    @Autowired
+    private CatalogueService catalogueService;
+
     @GetMapping("/catalogue")
     public String catalogue(Model model) {
-        //need model interaction
+        List<Catalogue> catalogueList = catalogueService.getAllCatalogues();
+        model.addAttribute("catalogueList", catalogueList);
         return "admin/catalogue";
     }
 
