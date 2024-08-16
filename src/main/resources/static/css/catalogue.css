@@ -50,6 +50,28 @@ button {
     transition: background-color 0.3s ease;
 }
 
+.btn{
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-danger{
+    background-color: #a61d40;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
 button:hover {
     background-color: #0056b3;
 }

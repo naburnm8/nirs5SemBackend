@@ -25,12 +25,8 @@
         <td th:text="${item.itemName}"></td>
         <td th:text="${item.itemPrice}"></td>
         <td>
-            <a th:href="@{'/admin/catalogue/edit/' + ${item.id}}">
-                <button>Edit</button>
-            </a>
-            <a th:href="@{'/admin/catalogue/delete/' + ${item.id}}">
-                <button>Delete</button>
-            </a>
+            <a th:href="@{'/admin/catalogue/edit/' + ${item.id}}" class="btn">Edit</a>
+            <a th:href="@{'/admin/catalogue/delete/' + ${item.id}}" class="btn btn-danger">Delete</a>
         </td>
     </tr>
     </tbody>
