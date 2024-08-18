@@ -14,6 +14,11 @@ public class AuthEntryPointJwt implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException {
         System.out.println(authException.getMessage());
+        String requestURI = request.getRequestURI();
+        if (requestURI.contains("admin") || requestURI.equals("/")) {
+            response.sendRedirect("/login");
+            return;
+        }
         response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
     }
 }
