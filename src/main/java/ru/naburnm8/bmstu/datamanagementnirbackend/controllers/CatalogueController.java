@@ -35,8 +35,7 @@ public class CatalogueController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Catalogue> updateCatalogue(@PathVariable int id, @RequestBody Catalogue catalogue) {
-        Optional<Catalogue> catalogueOptional = catalogueService.getCatalogueById(id);
-        return catalogueOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        return ResponseEntity.ok(catalogueService.updateCatalogue(id, catalogue));
     }
 
     @DeleteMapping("/{id}")
