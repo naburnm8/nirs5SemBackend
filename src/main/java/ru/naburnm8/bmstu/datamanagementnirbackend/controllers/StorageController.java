@@ -27,7 +27,7 @@ public class StorageController {
         return storageService.getAllStorages();
     }
 
-    @GetMapping("/{idItem}")
+    @GetMapping("/{id}")
     public ResponseEntity<Storage> getStorageById(@PathVariable int id) {
         Optional<Storage> storage = storageService.getStorageById(id);
         return storage.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
