@@ -8,7 +8,7 @@ import java.util.Date;
 @Entity
 public class Supply {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Temporal(TemporalType.DATE)

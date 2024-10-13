@@ -26,15 +26,17 @@ public class StorageService {
     public Optional<Storage> getStorageById(int idItem) {
         return storageRepository.findById(idItem);
     }
-    public Storage updateStorage(int idItem, Storage updatedStorage) {
-        return storageRepository.findById(idItem).map(storage -> {
-            storage.setQuantity(updatedStorage.getQuantity());
+    public Storage updateStorage(int id, Storage updatedStorage) {
+        Optional<Storage> storageOptional = storageRepository.findById(id);
+        if (storageOptional.isPresent()) {
+            Storage storage = storageOptional.get();
             storage.setItem(updatedStorage.getItem());
+            storage.setQuantity(updatedStorage.getQuantity());
             return storageRepository.save(storage);
-        }).orElseGet(() -> {
-            updatedStorage.setId(idItem);
-            return storageRepository.save(updatedStorage);
-        });
+        }
+        else {
+            return null;
+        }
     }
     public void createIfNotPresent(Catalogue catalogue) {
         Optional<Storage> storageOptional = storageRepository.findByItem(catalogue);
@@ -49,8 +51,6 @@ public class StorageService {
     }
     public void deleteByCatalogue(Catalogue catalogue){
         Optional<Storage> storageOptional = storageRepository.findByItem(catalogue);
-        if (storageOptional.isPresent()) {
-            storageRepository.deleteById(storageOptional.get().getId());
-        }
+        storageOptional.ifPresent(storage -> storageRepository.deleteById(storage.getId()));
     }
 }
