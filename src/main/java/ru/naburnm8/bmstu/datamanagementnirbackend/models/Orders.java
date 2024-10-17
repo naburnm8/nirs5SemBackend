@@ -7,7 +7,7 @@ import java.util.Date;
 @Entity
 public class Orders {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @ManyToOne
