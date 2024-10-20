@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Catalogue</title>
+    <link rel="stylesheet" href="/css/catalogue.css">
+</head>
+<body>
+<h1>Catalogue</h1>
+
+<button onclick="window.location.href='/admin/catalogue/add'">Add New Item</button>
+<button onclick="window.location.href='/admin'">Back to index</button>
+
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Item Name</th>
+        <th>Item Price</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${catalogueList}">
+        <td th:text="${item.id}"></td>
+        <td th:text="${item.itemName}"></td>
+        <td th:text="${item.itemPrice}"></td>
+        <td>
+            <a th:href="@{'/admin/catalogue/edit/' + ${item.id}}" class="btn">Edit</a>
+            <a th:href="@{'/admin/catalogue/delete/' + ${item.id}}" class="btn btn-danger">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

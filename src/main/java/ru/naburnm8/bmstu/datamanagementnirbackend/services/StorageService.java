@@ -2,6 +2,7 @@ package ru.naburnm8.bmstu.datamanagementnirbackend.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.naburnm8.bmstu.datamanagementnirbackend.models.Catalogue;
 import ru.naburnm8.bmstu.datamanagementnirbackend.models.Storage;
 import ru.naburnm8.bmstu.datamanagementnirbackend.repositories.StorageRepository;
 
@@ -25,14 +26,31 @@ public class StorageService {
     public Optional<Storage> getStorageById(int idItem) {
         return storageRepository.findById(idItem);
     }
-    public Storage updateStorage(int idItem, Storage updatedStorage) {
-        return storageRepository.findById(idItem).map(storage -> {
-            storage.setQuantity(updatedStorage.getQuantity());
+    public Storage updateStorage(int id, Storage updatedStorage) {
+        Optional<Storage> storageOptional = storageRepository.findById(id);
+        if (storageOptional.isPresent()) {
+            Storage storage = storageOptional.get();
             storage.setItem(updatedStorage.getItem());
+            storage.setQuantity(updatedStorage.getQuantity());
             return storageRepository.save(storage);
-        }).orElseGet(() -> {
-            updatedStorage.setIdItem(idItem);
-            return storageRepository.save(updatedStorage);
-        });
+        }
+        else {
+            return null;
+        }
+    }
+    public void createIfNotPresent(Catalogue catalogue) {
+        Optional<Storage> storageOptional = storageRepository.findByItem(catalogue);
+        if (storageOptional.isPresent()) {
+            storageOptional.get();
+            return;
+        }
+        Storage storage = new Storage();
+        storage.setItem(catalogue);
+        storage.setQuantity(1);
+        storageRepository.save(storage);
+    }
+    public void deleteByCatalogue(Catalogue catalogue){
+        Optional<Storage> storageOptional = storageRepository.findByItem(catalogue);
+        storageOptional.ifPresent(storage -> storageRepository.deleteById(storage.getId()));
     }
 }

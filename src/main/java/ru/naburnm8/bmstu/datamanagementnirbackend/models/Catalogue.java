@@ -2,12 +2,13 @@ package ru.naburnm8.bmstu.datamanagementnirbackend.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class Catalogue {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String itemName;
     private int itemPrice;
