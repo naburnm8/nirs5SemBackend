@@ -6,7 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.naburnm8.bmstu.datamanagementnirbackend.models.Catalogue;
+import ru.naburnm8.bmstu.datamanagementnirbackend.models.Clients;
 import ru.naburnm8.bmstu.datamanagementnirbackend.services.CatalogueService;
+import ru.naburnm8.bmstu.datamanagementnirbackend.services.ClientsService;
 
 import java.util.List;
 
@@ -15,6 +17,8 @@ import java.util.List;
 public class AdminPanelController {
     @Autowired
     private CatalogueService catalogueService;
+    @Autowired
+    private ClientsService clientsService;
 
     @GetMapping("/catalogue")
     public String catalogue(Model model) {
@@ -25,7 +29,8 @@ public class AdminPanelController {
 
     @GetMapping("/clients")
     public String clients(Model model) {
-        //need model interaction
+        List<Clients> clientsList = clientsService.getAllClients();
+        model.addAttribute("clients", clientsList);
         return "admin/clients";
     }
 
