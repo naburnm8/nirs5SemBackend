@@ -6,7 +6,8 @@
 </head>
 <body>
 <h1>Clients</h1>
-<a th:href="@{/clients/add}">Add Client</a>
+<a th:href="@{/admin/clients/add}">Add Client</a>
+<a th:href="@{/admin}">Back to index</a>
 <table>
     <thead>
     <tr>
@@ -26,8 +27,8 @@
         <td th:text="${client.patronymic}"></td>
         <td th:text="${client.phone}"></td>
         <td>
-            <a th:href="@{/clients/edit/{id}(id=${client.id})}">Edit</a>
-            <a th:href="@{/clients/delete/{id}(id=${client.id})}" onclick="return confirm('Are you sure?')">Delete</a>
+            <a th:href="@{/admin/clients/edit/{id}(id=${client.id})}">Edit</a>
+            <a th:href="@{/admin/clients/delete/{id}(id=${client.id})}" onclick="return confirm('Are you sure?')">Delete</a>
         </td>
     </tr>
     </tbody>

@@ -44,7 +44,7 @@ public class WebSecurityConfig {
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
                 .authorizeHttpRequests(authorize -> authorize.requestMatchers("/auth/**").permitAll()
                         .requestMatchers(("/api/connection/**")).permitAll().requestMatchers("/login").permitAll().requestMatchers("/error").permitAll().requestMatchers("css/**").permitAll()
-                        .requestMatchers("/admin/**").access(new WebAuthManager())
+                        .requestMatchers("/admin/**").access(new WebAuthManager()).requestMatchers("/auth/register/**").permitAll()
                         .anyRequest().authenticated());
 
         http.addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class);

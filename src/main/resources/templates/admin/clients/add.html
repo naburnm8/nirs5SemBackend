@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Add Client</h1>
-<form th:action="@{/clients/add}" th:object="${clients}" method="post">
+<form th:action="@{/admin/clients/add}" th:object="${clients}" method="post">
     <label>First Name:</label>
     <input type="text" th:field="*{firstName}" required><br>
 

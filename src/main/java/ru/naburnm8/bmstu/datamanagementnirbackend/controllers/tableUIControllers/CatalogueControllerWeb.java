@@ -6,7 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.naburnm8.bmstu.datamanagementnirbackend.models.Catalogue;
 import ru.naburnm8.bmstu.datamanagementnirbackend.services.CatalogueService;
+import ru.naburnm8.bmstu.datamanagementnirbackend.services.StorageService;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 @Controller
@@ -15,6 +17,8 @@ public class CatalogueControllerWeb {
 
     @Autowired
     CatalogueService catalogueService;
+    @Autowired
+    StorageService storageService;
 
     @GetMapping("/add")
     public String add(Model model) {
@@ -24,6 +28,10 @@ public class CatalogueControllerWeb {
     @PostMapping("/add")
     public String addCatalogue(@ModelAttribute Catalogue catalogue, Model model) {
         catalogueService.createCatalogue(catalogue);
+        ArrayList<Catalogue> catalogues = new ArrayList<>(catalogueService.getAllCatalogues());
+        for(Catalogue c: catalogues) {
+            storageService.createIfNotPresent(c);
+        }
         return "redirect:/admin/catalogue";
     }
     @GetMapping("/edit/{id}")

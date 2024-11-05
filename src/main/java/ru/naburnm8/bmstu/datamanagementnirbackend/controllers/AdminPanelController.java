@@ -1,14 +1,16 @@
 package ru.naburnm8.bmstu.datamanagementnirbackend.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.naburnm8.bmstu.datamanagementnirbackend.models.Catalogue;
-import ru.naburnm8.bmstu.datamanagementnirbackend.models.Clients;
-import ru.naburnm8.bmstu.datamanagementnirbackend.services.CatalogueService;
-import ru.naburnm8.bmstu.datamanagementnirbackend.services.ClientsService;
+import ru.naburnm8.bmstu.datamanagementnirbackend.models.*;
+import ru.naburnm8.bmstu.datamanagementnirbackend.security.models.Users;
+import ru.naburnm8.bmstu.datamanagementnirbackend.security.services.UserService;
+import ru.naburnm8.bmstu.datamanagementnirbackend.services.*;
 
 import java.util.List;
 
@@ -19,6 +21,14 @@ public class AdminPanelController {
     private CatalogueService catalogueService;
     @Autowired
     private ClientsService clientsService;
+    @Autowired
+    private OrdersService ordersService;
+    @Autowired
+    private StorageService storageService;
+    @Autowired
+    private SupplyService supplyService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/catalogue")
     public String catalogue(Model model) {
@@ -36,25 +46,29 @@ public class AdminPanelController {
 
     @GetMapping("/orders")
     public String orders(Model model) {
-        //need model interaction
+        List<Orders> ordersList = ordersService.getAllOrders();
+        model.addAttribute("orders", ordersList);
         return "admin/orders";
     }
 
     @GetMapping("/storage")
     public String storage(Model model) {
-        //need model interaction
+        List<Storage> storageList = storageService.getAllStorages();
+        model.addAttribute("storage", storageList);
         return "admin/storage";
     }
 
     @GetMapping("/supply")
     public String supply(Model model) {
-        //need model interaction
+        List<Supply> supplyList = supplyService.getAllSupply();
+        model.addAttribute("supply", supplyList);
         return "admin/supply";
     }
 
     @GetMapping("/users")
     public String users(Model model) {
-        //need model interaction
+        List<Users> usersList = userService.getAllUsers();
+        model.addAttribute("users", usersList);
         return "admin/users";
     }
 }

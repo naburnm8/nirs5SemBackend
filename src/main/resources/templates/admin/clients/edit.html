@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Edit Client</h1>
-<form th:action="@{/clients/edit/{id}(id=${client.id})}" th:object="${client}" method="post">
+<form th:action="@{/admin/clients/edit/{id}(id=${client.id})}" th:object="${client}" method="post">
     <input type="hidden" th:field="*{id}">
 
     <label>First Name:</label>

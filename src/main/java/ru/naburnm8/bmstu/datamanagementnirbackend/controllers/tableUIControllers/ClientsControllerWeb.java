@@ -10,7 +10,7 @@ import ru.naburnm8.bmstu.datamanagementnirbackend.services.ClientsService;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/clients")
+@RequestMapping("/admin/clients")
 public class ClientsControllerWeb {
 
     @Autowired
