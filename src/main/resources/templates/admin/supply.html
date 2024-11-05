@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Supply</title>
+    <link rel="stylesheet" href="/css/catalogue.css">
 </head>
 <body>
+<h1>Supply</h1>
 
+<button onclick="window.location.href='/admin/supply/add'">Add New Item</button>
+<button onclick="window.location.href='/admin'">Back to index</button>
+
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Item ID</th>
+        <th>Item Q</th>
+        <th>Date of delivery</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${supply}">
+        <td th:text="${item.getId()}"></td>
+        <td th:text="${item.getItem().getId()}"></td>
+        <td th:text="${item.getQuantity()}"></td>
+        <td th:text="${item.getDateOfArrival()}"></td>
+        <td>
+            <a th:href="@{'/admin/supply/edit/' + ${item.id}}" class="btn">Edit</a>
+            <a th:href="@{'/admin/supply/delete/' + ${item.id}}" class="btn btn-danger">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

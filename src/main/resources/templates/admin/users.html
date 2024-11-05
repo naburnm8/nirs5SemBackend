@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Users</title>
+    <link rel="stylesheet" href="/css/catalogue.css">
 </head>
 <body>
+<h1>Users</h1>
 
+<button onclick="window.location.href='/admin/users/add'">Register new user</button>
+<button onclick="window.location.href='/admin'">Back to index</button>
+
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Login</th>
+        <th>Role</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${users}">
+        <td th:text="${item.getId()}"></td>
+        <td th:text="${item.getUsername()}"></td>
+        <td th:text="${item.getRole()}"></td>
+        <td>
+            <a th:href="@{'/admin/users/edit/' + ${item.id}}" class="btn">Edit</a>
+            <a th:href="@{'/admin/users/delete/' + ${item.id}}" class="btn btn-danger">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

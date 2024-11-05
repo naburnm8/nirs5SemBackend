@@ -1,10 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Orders</title>
+    <link rel="stylesheet" href="/css/catalogue.css">
 </head>
 <body>
+<h1>Orders</h1>
 
+<button onclick="window.location.href='/admin/orders/add'">Add New Item</button>
+<button onclick="window.location.href='/admin'">Back to index</button>
+
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Item ID</th>
+        <th>Item Q</th>
+        <th>Client ID</th>
+        <th>Date of Transaction</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${orders}">
+        <td th:text="${item.getId()}"></td>
+        <td th:text="${item.getItem().getId()}"></td>
+        <td th:text="${item.getqItem()}"></td>
+        <td th:text="${item.getClient().getId()}"></td>
+        <td th:text="${item.getDateOfTransaction()}"></td>
+        <td>
+            <a th:href="@{'/admin/orders/edit/' + ${item.id}}" class="btn">Edit</a>
+            <a th:href="@{'/admin/orders/delete/' + ${item.id}}" class="btn btn-danger">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
