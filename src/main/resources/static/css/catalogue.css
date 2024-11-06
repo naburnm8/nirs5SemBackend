@@ -71,7 +71,16 @@ button {
     border-radius: 4px;
     transition: background-color 0.3s ease;
 }
-
+.btn-deactivated{
+    background-color: gray;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
 button:hover {
     background-color: #0056b3;
 }
@@ -112,4 +121,7 @@ form button {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+}
+.danger-text{
+    color: #ba0606;
 }

@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edit User</title>
+    <link rel="stylesheet" href="/css/catalogue/edit.css">
 </head>
 <body>
+<h1>Edit User</h1>
+<form th:action="@{/admin/users/edit/{id}(id=${user.id})}" th:object="${user}" method="post">
+    <input type="hidden" th:field="*{id}">
 
+    <label>Username:</label>
+    <input type="text" th:field="*{username}" required><br>
+
+    <label>Password:</label>
+    <input type="text" th:field="*{password}" required><br>
+
+    <label>Role:</label>
+    <select id="role" name="role" th:field="*{role}">
+        <option value="ADMINISTRATOR">ADMINISTRATOR</option>
+        <option value="CONSULTANT">CONSULTANT</option>
+        <option value="STORAGE">STORAGE</option>
+    </select><br>
+    <button type="submit">Save</button>
+</form>
 </body>
 </html>

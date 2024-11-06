@@ -17,6 +17,10 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public Optional<Users> getUserById(int id){
+        return userRepository.findById(id);
+    }
+
     public Optional<Users> getUserByUsername(String username){
         return userRepository.findByUsername(username);
     }
@@ -27,5 +31,20 @@ public class UserService {
 
     public void deleteUserByUsername(String username){
         userRepository.deleteByUsername(username);
+    }
+    public void deleteUserById(int id){userRepository.deleteById(id);}
+
+    public void updateUser(int userId, Users user){
+        Optional<Users> userOptional = userRepository.findById(userId);
+        if(userOptional.isPresent()){
+            userOptional.get().setUsername(user.getUsername());
+            userOptional.get().setPassword(user.getPassword());
+            userOptional.get().setRole(user.getRole());
+            userRepository.save(userOptional.get());
+        }
+        else {
+            user.setId(userId);
+            userRepository.save(user);
+        }
     }
 }

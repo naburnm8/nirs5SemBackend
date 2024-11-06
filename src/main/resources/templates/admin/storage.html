@@ -7,7 +7,7 @@
 <body>
 <h1>Storage</h1>
 
-<button onclick="window.location.href='/admin/storage/add'">Add New Item</button>
+<button class="btn-deactivated">Add New Item</button>
 <button onclick="window.location.href='/admin'">Back to index</button>
 
 
@@ -27,10 +27,11 @@
         <td th:text="${item.getQuantity()}"></td>
         <td>
             <a th:href="@{'/admin/storage/edit/' + ${item.id}}" class="btn">Edit</a>
-            <a th:href="@{'/admin/storage/delete/' + ${item.id}}" class="btn btn-danger">Delete</a>
+            <a class="btn btn-deactivated">Delete</a>
         </td>
     </tr>
     </tbody>
 </table>
+<h1 class="danger-text">ATTENTION! Deletion and addition of rows is disabled.</h1>
 </body>
 </html>
