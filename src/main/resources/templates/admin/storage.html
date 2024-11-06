@@ -14,16 +14,14 @@
 <table>
     <thead>
     <tr>
-        <th>ID</th>
-        <th>Item ID</th>
+        <th>Item Name</th>
         <th>Item Q</th>
         <th>Actions</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="item : ${storage}">
-        <td th:text="${item.getId()}"></td>
-        <td th:text="${item.getItem().getId()}"></td>
+        <td th:text="${item.getItem().getItemName()}"></td>
         <td th:text="${item.getQuantity()}"></td>
         <td>
             <a th:href="@{'/admin/storage/edit/' + ${item.id}}" class="btn">Edit</a>
