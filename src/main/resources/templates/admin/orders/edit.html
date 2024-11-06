@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edit Order</title>
+    <link rel="stylesheet" href="/css/catalogue/edit.css">
 </head>
 <body>
+<h1>Edit Order</h1>
+<form th:action="@{/admin/orders/edit/{id}(id=${order.id})}" th:object="${order}" method="post">
+    <input type="hidden" th:field="*{id}">
 
+    <label>Item:</label>
+    <select id="item" name="itemId">
+        <option th:each="item_obj : ${items}"
+                th:value="${item_obj.id}"
+                th:text="${item_obj.itemName}"
+                th:selected="${item_obj.id == order.item.id}">
+        </option>
+    </select><br>
+
+    <label>Quantity:</label>
+    <input type="number" th:field="*{qItem}" required><br>
+
+    <label>Date of transaction: </label>
+    <input type="date" th:field="*{dateOfTransaction}" required><br>
+
+    <label>Client: </label>
+    <select id="client" name="clientId">
+        <option th:each="client_obj : ${clients}"
+                th:value="${client_obj.id}"
+                th:text="${client_obj.lastName}"
+                th:selected="${client_obj.id == order.client.id}">
+        </option>
+    </select><br>
+    <button type="submit">Save</button>
+</form>
 </body>
 </html>

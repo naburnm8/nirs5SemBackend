@@ -15,7 +15,7 @@
     <thead>
     <tr>
         <th>ID</th>
-        <th>Item ID</th>
+        <th>Item Name</th>
         <th>Item Q</th>
         <th>Date of delivery</th>
         <th>Actions</th>
@@ -24,7 +24,7 @@
     <tbody>
     <tr th:each="item : ${supply}">
         <td th:text="${item.getId()}"></td>
-        <td th:text="${item.getItem().getId()}"></td>
+        <td th:text="${item.getItem().getItemName()}"></td>
         <td th:text="${item.getQuantity()}"></td>
         <td th:text="${item.getDateOfArrival()}"></td>
         <td>

@@ -1,6 +1,7 @@
 package ru.naburnm8.bmstu.datamanagementnirbackend.models;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -11,6 +12,7 @@ public class Supply {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     private Date dateOfArrival;
 

@@ -1,6 +1,7 @@
 package ru.naburnm8.bmstu.datamanagementnirbackend.models;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -15,6 +16,7 @@ public class Orders {
     private Catalogue item;
     private int qItem;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     private Date dateOfTransaction;
 

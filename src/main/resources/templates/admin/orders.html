@@ -15,9 +15,9 @@
     <thead>
     <tr>
         <th>ID</th>
-        <th>Item ID</th>
+        <th>Item Name</th>
         <th>Item Q</th>
-        <th>Client ID</th>
+        <th>Client Last Name</th>
         <th>Date of Transaction</th>
         <th>Actions</th>
     </tr>
@@ -25,9 +25,9 @@
     <tbody>
     <tr th:each="item : ${orders}">
         <td th:text="${item.getId()}"></td>
-        <td th:text="${item.getItem().getId()}"></td>
+        <td th:text="${item.getItem().getItemName()}"></td>
         <td th:text="${item.getqItem()}"></td>
-        <td th:text="${item.getClient().getId()}"></td>
+        <td th:text="${item.getClient().getLastName()}"></td>
         <td th:text="${item.getDateOfTransaction()}"></td>
         <td>
             <a th:href="@{'/admin/orders/edit/' + ${item.id}}" class="btn">Edit</a>
